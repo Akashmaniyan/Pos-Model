@@ -1,0 +1,98 @@
+.app {
+  height: 100vh;
+  background: #f4f4f4;
+}
+
+.pos-container {
+  display: flex;
+  height: 100%;
+}
+
+.transaction-panel {
+  flex: 2;
+  padding: 20px;
+  background: white;
+}
+
+.quick-actions {
+  flex: 1;
+  padding: 20px;
+  background: #fafafa;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.total-section {
+  border-top: 2px solid #ddd;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+.pay-button {
+  width: 100%;
+  padding: 20px;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.quick-btn {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.custom-btn {
+  background: #eee;
+}
+
+.utility-section {
+  margin-top: 30px;
+}
+
+.utility-btn {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  width: 300px;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.cancel-btn {
+  background: red;
+  color: white;
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+}
+
+.enter-btn {
+  background: green;
+  color: white;
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+}
