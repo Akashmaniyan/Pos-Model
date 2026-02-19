@@ -1,98 +1,213 @@
-.app {
-  height: 100vh;
-  background: #f4f4f4;
-}
-
+/* --- Page Layout --- */
 .pos-container {
   display: flex;
-  height: 100%;
-}
-
-.transaction-panel {
-  flex: 2;
+  justify-content: space-between;
   padding: 20px;
-  background: white;
+  height: 90vh;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
 }
 
-.quick-actions {
+/* --- LEFT: Transaction Panel --- */
+.transaction-panel {
   flex: 1;
   padding: 20px;
-  background: #fafafa;
-}
-
-.item-row {
+  margin-right: 60px; /* space in middle */
   display: flex;
-  justify-content: space-between;
-  margin: 8px 0;
+  flex-direction: column;
 }
 
-.total-section {
-  border-top: 2px solid #ddd;
-  margin-top: 20px;
-  padding-top: 10px;
-}
-
-.pay-button {
-  width: 100%;
-  padding: 20px;
-  font-size: 20px;
-  margin-top: 20px;
-}
-
-.quick-btn {
-  width: 100%;
-  padding: 16px;
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-
-.custom-btn {
-  background: #eee;
-}
-
-.utility-section {
-  margin-top: 30px;
-}
-
-.utility-btn {
-  width: 100%;
-  padding: 12px;
+/* Transaction title */
+.transaction-panel h2 {
   margin-bottom: 8px;
+  font-size: 1.5rem;
 }
 
+/* Scrollable item list */
+.transaction-items {
+  flex: 1; /* takes remaining space */
+  overflow-y: auto;
+}
+
+/* Receipt-style rows */
+.item-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  padding: 2px 0;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.item-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-price {
+  position: absolute;
+  left: 200px;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* --- Bottom section (Total + Pay) --- */
+.transaction-footer {
+  margin-top: 10px;
+}
+
+.transaction-footer h3 {
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+.delete{
+  position: absolute;
+  top: 200px;
+  left: 500px;
+  width: 100px;
+  padding: 16px;
+  font-size: 1.3rem;
+  background-color:white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  border:1px solid black ;
+}
+/* PAY button */
+.pay-button {
+  width: 50%;
+  padding: 16px;
+  font-size: 1.3rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Disabled PAY */
+.pay-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- RIGHT: Quick Actions --- */
+.quick-actions {
+  width: 220px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.quick-actions h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.quick-actions button {
+  padding: 15px;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+
+}
+
+/* --- Modal --- */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .modal {
-  background: white;
-  padding: 20px;
+  background: #fff;
+  padding: 30px;
   width: 300px;
+  text-align: center;
 }
 
-.keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.cancel-btn {
-  background: red;
-  color: white;
-  margin-top: 10px;
+.modal input {
   width: 100%;
   padding: 12px;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  border: 1px solid #000;
 }
 
-.enter-btn {
-  background: green;
-  color: white;
-  margin-top: 10px;
-  width: 100%;
-  padding: 12px;
+.modal button {
+  padding: 12px 20px;
+  margin: 5px;
+  font-size: 1.1rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
+.cancelbutton{
+  background-color: red;
+}
+
+/* --- Payment Screen --- */
+.payment-screen {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.payment-screen h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.payment-screen button {
+  padding: 20px 25px;
+  font-size: 1.2rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+}
+
+#view{
+  position: absolute;
+  right:500px;
+  top: 200px;
+  background-color: white;
+  color: #000;
+  border: 1px solid black;
+}
+.headline{
+  text-align: center;
+  font-size: 40px;
+}
+.journal-items{
+  position: absolute;
+  left:200px;
+  top:100px;
+  padding: 10px;
+}
+.journal-footer{
+  position: absolute;
+  left:200px;
+  top:300px;
+  padding: 5px;
+}
+.journal-footer button{
+  width: 100px;
+  height: 50px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+

@@ -1,16 +1,13 @@
-function Quickaction({onAddcoffe,onAddFruits,onAddcustomamount}) {
+function Quickaction({ onAddCoffee, onAddFruit, onCustomAmount,onViewJournal }) {
   return (
     <div className="quick-actions">
       <h2>Quick Items</h2>
-
-      <button className="quick-btn" onClick={onAddcoffe}> Coffee</button>
-      <button className="quick-btn" onClick={onAddFruits}> Fruits</button>
-      <button className="quick-btn custom-btn" onClick={onAddcustomamount}> Enter Amount</button>
-
-      <div className="utility-section">
-        <button className="utility-btn">Last Receipt</button>
-        <button className="utility-btn">View Journal</button>
-      </div>
+      <button onClick={onAddCoffee}> Coffee</button>
+      <button onClick={onAddFruit}> Fruits</button>
+      <button onClick={onCustomAmount}>Groceries</button>
+      <button id="view" onClick={onViewJournal}>
+        View Journal
+      </button>
     </div>
   );
 }

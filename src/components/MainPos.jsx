@@ -1,39 +1,22 @@
 import Transaction from "./Transaction";
 import Quickaction from "./Quickaction";
-function MainPOS({CartItems,setCartItmes,opencustomamount}) {
-    //adding cofee
-    const addcoffe=()=>{
-        setCartItmes(prev => [
-            ...prev,{
-                id:Date.now(),
-                name:'coffee',
-                price:3.50
 
-            }
-       ]);
-      
-    };
-    //adding fruits
-    const addfruits=()=>{
-        setCartItmes(prev => [
-            ...prev,{
-                id:Date.now(),
-                name:'fruits',
-                price:1.50
+function MainPOS({ CartItems, addItem, openCustomAmount, onPayClick }) {
+  const addCoffee = () => 
+    console.log('clicked')
+    addItem("Coffee", 3.5);
+  const addFruit = () => addItem("Fruits", 2.0);
 
-            }
-       ]);
-    }
   return (
     <div className="pos-container">
-      <Transaction CartItems={CartItems} />
-      <Quickaction 
-       onAddcoffe={addcoffe} 
-       onAddFruits={addfruits} 
-       onAddcustomamount={opencustomamount}
+      <Transaction CartItems={CartItems} onPayClick={onPayClick} />
+      <Quickaction
+        onAddCoffee={addCoffee}
+        onAddFruit={addFruit}
+        onCustomAmount={openCustomAmount}
+        onViewJournal={onViewJournal}
       />
     </div>
   );
 }
-
 export default MainPOS;
