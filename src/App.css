@@ -12,7 +12,7 @@
 .transaction-panel {
   flex: 1;
   padding: 20px;
-  margin-right: 60px; /* space in middle */
+  margin-right: 60px; 
   display: flex;
   flex-direction: column;
 }
