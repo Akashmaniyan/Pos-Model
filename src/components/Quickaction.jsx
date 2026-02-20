@@ -8,6 +8,9 @@ function Quickaction({ onAddCoffee, onAddFruit, onCustomAmount,onViewJournal }) 
       <button id="view" onClick={onViewJournal}>
         View Journal
       </button>
+      <button id="last" onClick={onViewJournal}>
+        Last Receipt
+      </button>
     </div>
   );
 }

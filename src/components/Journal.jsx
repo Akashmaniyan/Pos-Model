@@ -21,6 +21,8 @@ export default function Journal({transactions,index,setIndex,onBack}) {
         <button disabled={index === 0} onClick={() => setIndex(index - 1)}>Previous</button>
 
         <button disabled={index === transactions.length - 1}onClick={() => setIndex(index + 1)}>Next</button>
+        
+        <button >Print</button>
 
         <button onClick={onBack}>Back</button>
       </div>

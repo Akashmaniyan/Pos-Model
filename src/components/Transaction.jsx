@@ -18,6 +18,8 @@ function Transaction({ cartItems = [], onPayClick ,onDelete}) {
       <button className='pay-button' onClick={onPayClick} disabled={cartItems.length === 0}>
         Pay
       </button>
+ 
+
     </div>
   );
 }
