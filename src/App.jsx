@@ -64,7 +64,7 @@ function App() {
       setCurrentScreen("RESULT");
       setTimeout(()=>{
         setCurrentScreen("MAIN");
-      },1000)
+      },1500)
     }, 2000); 
   };
 

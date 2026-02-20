@@ -5,7 +5,8 @@ export default function Journal({transactions,index,setIndex,onBack}) {
     <div className="journal-panel">
       <h2 className="headline">Journal</h2>
       <div className="journal-items">
-        <div className="item-time">{tx.time}</ div> <div>--------------------------</div>
+        <div className="Date"><>Date :</>{new Date().toLocaleDateString()}</div>
+        <div className="item-time"><>Time :</>{tx.time}</ div> <div>--------------------------</div>
         {tx.items.map((item, i) => (
           <div key={i} className="item-row">
             <span>{item.name}</span>

@@ -23,7 +23,7 @@ function PaymentScreen({ currentScreen, selectPaymentMethod, totalAmount, onNewP
     return (
       <div className="payment-screen">
         <h2>Online Approved</h2>
-        <p>Total Paid: £{totalAmount.toFixed(2)}</p>
+        {/* <p>Total Paid: £{totalAmount.toFixed(2)}</p> */}
         {/* <button onClick={onNewPayment}>New Payment</button> */}
       </div>
     );
