@@ -1,5 +1,5 @@
-import Transaction from "./Transaction";
-import Quickaction from "./Quickaction";
+import Transaction from "../PaymentModel/Transaction";
+import Quickaction from "../CartPanelModel/Quickaction";
 
 function MainPOS({ CartItems, addItem, openCustomAmount, onPayClick }) {
   const addCoffee = () => 

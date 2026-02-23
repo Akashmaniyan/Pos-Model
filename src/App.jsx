@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Transaction from "./components/Transaction";
-import Quickaction from "./components/Quickaction";
-import Customamount from "./components/Customamount";
-import PaymentScreen from "./components/PaymentScreen";
-import Journal from "./components/Journal";
+import Transaction from "./components/PaymentModel/Transaction"
+import Quickaction from "./components/CartPanelModel/Quickaction";
+import Customamount from "./components/CartPanelModel/Customamount";
+import PaymentScreen from "./components/PaymentModel/PaymentScreen";
+import Journal from "./components/JournalViewModel/Journal";
 import "./App.css"
 
 function App() {
@@ -29,11 +29,21 @@ function App() {
   };
 
   const openjournal = () => {
-    //console.log('aaa')
   if (transactions.length === 0) return;
   setCurrentJournalIndex(transactions.length - 1);
   setCurrentScreen("JOURNAL");
 };
+//handle declined payemt for retry
+const handleRetryYesPayment=()=>{
+  setCurrentScreen("PAYMENT_METHOD");
+}
+
+//handle declined payment for not retry
+
+const handleRetryNoPayment=()=>{
+  setCurrentScreen("MAIN");
+  setTransactions(...prev);
+}
 
 
   // Select payment method
@@ -41,6 +51,9 @@ function App() {
     setSelectedPaymentMethod(method);
     setCurrentScreen("PROCESSING");
     setPaymentStatus("PROCESSING");
+     
+    const isSucces=Math.random() > 0.5;
+    if(isSucces){
 
     setTimeout(() => {
       setPaymentStatus("SUCCESS");
@@ -66,6 +79,19 @@ function App() {
         setCurrentScreen("MAIN");
       },1500)
     }, 2000); 
+  }else{
+    setTimeout(()=>{
+      setCurrentScreen("PROCESSING");
+      setTimeout(()=>{
+        setCurrentScreen('PAYMENT_FAILED');
+
+        setTimeout(()=>{
+          setCurrentScreen("PAYMENT_RETRY");
+        },3000)
+      },1000)
+    },1500)
+    //setCurrentScreen('PAYMENT_FAILED');
+  }
   };
 
   // Start new payment
@@ -103,6 +129,14 @@ function App() {
           totalAmount={cartItems.reduce((sum, item) => sum + item.price, 0)}
           onNewPayment={handleNewPayment}
         />
+      )}
+      {(currentScreen==='PAYMENT_FAILED' || currentScreen==='PAYMENT_RETRY' ) &&(
+        <PaymentScreen 
+        currentScreen={currentScreen}
+        retryYesPayment={handleRetryYesPayment}
+        retryNoPayment={handleRetryNoPayment}
+        />
+
       )}
 
     {currentScreen === "JOURNAL" && (
