@@ -22,14 +22,16 @@ function App() {
 
 
 const addItem=(name,price)=>{
-  setCartItems(prev =>[
-    ...prev,{
+  const newItem={
       id:Date.now(),
       name,
       price,
       quantity:1
-    }
+  }
+  setCartItems(prev =>[
+    ...prev,newItem
   ])
+setSelectedItemId(newItem.id)
 }
   // incresing quantity
   const increaseQuantity=(id)=>{
