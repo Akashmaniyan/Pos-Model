@@ -26,7 +26,7 @@ function PaymentScreen({ currentScreen, selectPaymentMethod, totalAmount, onNewP
            {` .blink-twice { 
            animation: blinkTwice 2s ease-in-out 2; 
            position:absolute;
-           left:550px;
+           left:580px;
            color:red;
            top:250px;
            } 
@@ -47,10 +47,12 @@ function PaymentScreen({ currentScreen, selectPaymentMethod, totalAmount, onNewP
   }
   if(currentScreen==='PAYMENT_RETRY'){
     return(
-      <div className="retry">
-        <h4>Not Succesfull Retry ?</h4>
-        <button onClick={retryYesPayment}>Yes</button>
+      <div className="retry-modal">
+        <div className="retry">
+          <h4>Not Succesfull Retry?</h4>  
+        <button  onClick={retryYesPayment}>Yes</button>
         <button onClick={retryNoPayment}>No</button>
+       </div>
       </div>
     )
   }

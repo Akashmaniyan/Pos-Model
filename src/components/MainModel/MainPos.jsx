@@ -4,7 +4,7 @@ import Quickaction from "../CartPanelModel/Quickaction";
 function MainPOS({ CartItems, addItem, openCustomAmount, onPayClick }) {
   const addCoffee = () => 
     console.log('clicked')
-    addItem("Coffee", 3.5);
+    addItem("Coffee", 3.35);
   const addFruit = () => addItem("Fruits", 2.0);
 
   return (

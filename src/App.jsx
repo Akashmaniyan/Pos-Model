@@ -17,10 +17,41 @@ function App() {
 
   const [transactions, setTransactions] = useState([]);
 
-  // Add item to cart
-  const addItem = (name, price) => {
-    setCartItems(prev => [...prev, { id: Date.now(), name, price }]);
-  };
+   //for selecting the item
+  const[selectedItemId,setSelectedItemId]=useState(null);
+
+
+const addItem=(name,price)=>{
+  setCartItems(prev =>[
+    ...prev,{
+      id:Date.now(),
+      name,
+      price,
+      quantity:1
+    }
+  ])
+}
+  // incresing quantity
+  const increaseQuantity=(id)=>{
+    if(!id) return;
+    console.log('clicked');
+    setCartItems(prev => 
+      prev.map(item => item.id === id ? { ...item, quantity : item.quantity + 1 } : item
+      )
+
+  );
+  }
+  //decreasing quantity
+    const decreaseQuantity=(id)=>{
+      if(!id) return;
+      console.log('akk')
+    setCartItems(prev=> 
+       prev
+       .map(item => item.id === id ? { ...item, quantity: item.quantity - 1 } : item)
+       .filter(item => item.quantity > 0)
+
+  );
+  }
 
   // Pay button clicked
   const handlePayClick = () => {
@@ -64,7 +95,7 @@ const handleRetryNoPayment=()=>{
         {
           id: Date.now(),
           items: [...cartItems],
-          total: cartItems.reduce((sum, item) => sum + item.price, 0),
+          total: cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
           method: method,
           status: "SUCCESS",
           time: new Date().toLocaleTimeString(),
@@ -96,14 +127,25 @@ const handleRetryNoPayment=()=>{
 
   // Start new payment
   const handleNewPayment = () => setCurrentScreen("MAIN");
-  const  handleclearclick=()=>setCartItems([]);
+  const  handleclearclick=()=>{
+    setCartItems([]);
+    setSelectedItemId(null);
+  }
   return (
     <>
       {currentScreen === "MAIN" && (
         <div className="pos-container">
-          <Transaction cartItems={cartItems} onPayClick={handlePayClick} onDelete={handleclearclick} />
+          <Transaction 
+          cartItems={cartItems} 
+          onPayClick={handlePayClick} 
+          onDelete={handleclearclick} 
+          OnIncrease={increaseQuantity}
+          OnDecrease={decreaseQuantity}
+          selectedItemId={selectedItemId}
+          OnSelectedItemId={setSelectedItemId}
+          />
           <Quickaction
-            onAddCoffee={() => addItem("Coffee", 3.5)}
+            onAddCoffee={() => addItem("Coffee", 3.35)}
             onAddFruit={() => addItem("Fruits", 2.0)}
             onCustomAmount={() => setIsCustomOpen(true)}
             onViewJournal={openjournal}
@@ -126,7 +168,7 @@ const handleRetryNoPayment=()=>{
           currentScreen={currentScreen}
           selectPaymentMethod={selectPaymentMethod}
           paymentStatus={paymentStatus}
-          totalAmount={cartItems.reduce((sum, item) => sum + item.price, 0)}
+          totalAmount={cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)}
           onNewPayment={handleNewPayment}
         />
       )}
@@ -141,6 +183,7 @@ const handleRetryNoPayment=()=>{
 
     {currentScreen === "JOURNAL" && (
     <Journal
+   
     transactions={transactions}
     index={currentJournalIndex}
     setIndex={setCurrentJournalIndex}
